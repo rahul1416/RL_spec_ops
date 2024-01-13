@@ -1,0 +1,29 @@
+Failure # 1 (occurred at 2023-11-19_01-32-11)
+The actor died because of an error raised in its creation task, [36mray::PPO.__init__()[39m (pid=5940, ip=10.10.2.252, actor_id=301ea6c184f3bfe0734d70c901000000, repr=PPO)
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 227, in _setup
+    self.add_workers(
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 593, in add_workers
+    raise result.get()
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 481, in __fetch_result
+    result = ray.get(r)
+ray.exceptions.RayActorError: The actor died because of an error raised in its creation task, [36mray::RolloutWorker.__init__()[39m (pid=5993, ip=10.10.2.252, actor_id=5b22fe25c5ec3e7e4904a39801000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7f9bf3e57040>)
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/evaluation/rollout_worker.py", line 397, in __init__
+    self.env = env_creator(copy.deepcopy(self.env_context))
+  File "/home/aldrax/Documents/SEM-5/Artificial intelligane/RL/RL_Spec_Ops/custom-environment/env/Train.py", line 81, in <lambda>
+    register_env(env_name, lambda config: ParallelPettingZooEnv(env_creator(config)))
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/env/wrappers/pettingzoo_env.py", line 155, in __init__
+    self.par_env.reset()
+AttributeError: 'function' object has no attribute 'reset'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::PPO.__init__()[39m (pid=5940, ip=10.10.2.252, actor_id=301ea6c184f3bfe0734d70c901000000, repr=PPO)
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 517, in __init__
+    super().__init__(
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 161, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 639, in setup
+    self.workers = WorkerSet(
+  File "/home/aldrax/.local/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 179, in __init__
+    raise e.args[0].args[2]
+AttributeError: 'function' object has no attribute 'reset'
